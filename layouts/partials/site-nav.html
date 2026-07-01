@@ -1,0 +1,20 @@
+{{- $page := .page -}}
+{{- $items := slice
+  (dict "name" "首页" "url" (`/` | relURL) "kind" "home" "section" "")
+  (dict "name" "文章" "url" (`/posts/` | relURL) "kind" "" "section" "posts")
+-}}
+<ul>
+  {{- range $item := $items -}}
+    {{- $active := false -}}
+    {{- if eq $item.kind "home" -}}
+      {{- $active = $page.IsHome -}}
+    {{- else if $item.section -}}
+      {{- $active = eq $page.Section $item.section -}}
+    {{- else -}}
+      {{- $active = eq $page.RelPermalink $item.url -}}
+    {{- end -}}
+    <li>
+      <a href="{{ $item.url }}"{{ if $active }} class="is-active"{{ end }}>{{ $item.name }}</a>
+    </li>
+  {{- end -}}
+</ul>

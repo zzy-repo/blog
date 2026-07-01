@@ -1,0 +1,28 @@
+{{ define "main" }}
+  <header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}
+      <div class="page-description">{{ . }}</div>
+    {{ end }}
+  </header>
+
+  {{ $posts := .Pages.ByDate.Reverse }}
+  {{ if gt (len $posts) 0 }}
+    {{ range first 1 $posts }}
+      {{ partial "post-card.html" (dict "page" . "featured" true) }}
+    {{ end }}
+
+    {{ $rest := after 1 $posts }}
+    {{ if gt (len $rest) 0 }}
+      <section class="post-grid" aria-label="{{ .Title }}">
+        {{ range $rest }}
+          {{ partial "post-card.html" (dict "page" . "featured" false) }}
+        {{ end }}
+      </section>
+    {{ end }}
+  {{ else }}
+    <section class="empty-state">
+      <p>这里还没有内容。</p>
+    </section>
+  {{ end }}
+{{ end }}

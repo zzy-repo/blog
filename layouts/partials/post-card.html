@@ -1,0 +1,26 @@
+{{- $post := .page -}}
+{{- $featured := .featured | default false -}}
+{{- $label := "文章" -}}
+{{- with $post.Params.categories -}}
+  {{- $label = index . 0 -}}
+{{- end -}}
+<article class="post-card{{ if $featured }} post-card-featured{{ end }}">
+  <div class="post-meta">
+    <span class="post-category">{{ $label }}</span>
+    <span class="post-date">
+      <time datetime="{{ $post.Date.Format `2006-01-02T15:04:05Z07:00` }}">{{ $post.Date.Format "2006年1月2日" }}</time>
+    </span>
+  </div>
+
+  <h2 class="post-title{{ if $featured }} post-title-featured{{ end }}">
+    <a href="{{ $post.RelPermalink }}">{{ $post.Title }}</a>
+  </h2>
+
+  {{ with $post.Summary }}
+    <p class="post-summary">{{ . | plainify }}</p>
+  {{ end }}
+
+  <p class="post-link">
+    <a class="readmore-link" href="{{ $post.RelPermalink }}">阅读更多</a>
+  </p>
+</article>

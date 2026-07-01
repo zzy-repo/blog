@@ -1,0 +1,31 @@
+{{ define "main" }}
+  {{ $label := "文章" }}
+  {{ with .Params.categories }}
+    {{ $label = index . 0 }}
+  {{ end }}
+
+  <article class="single-post">
+    <div class="single-post-inner">
+      <div class="post-meta">
+        <span class="post-category">{{ $label }}</span>
+        <span class="post-date">
+          <time datetime="{{ .Date.Format `2006-01-02T15:04:05Z07:00` }}">{{ .Date.Format "2006年1月2日" }}</time>
+        </span>
+      </div>
+
+      <h1 class="single-post-title">{{ .Title }}</h1>
+
+      {{ with .Summary }}
+        <p class="single-post-summary">{{ . }}</p>
+      {{ end }}
+
+      <div class="article-content">
+        {{ .Content }}
+      </div>
+
+      <p class="back-link">
+        <a class="readmore-link" href="{{ `/posts/` | relURL }}">返回文章列表</a>
+      </p>
+    </div>
+  </article>
+{{ end }}

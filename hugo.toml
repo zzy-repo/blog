@@ -1,0 +1,7 @@
+baseURL = 'http://localhost:1313/'
+locale = 'zh-cn'
+defaultContentLanguage = 'zh-cn'
+title = '我的博客'
+
+[params]
+description = '记录写作、阅读与日常想法。'
