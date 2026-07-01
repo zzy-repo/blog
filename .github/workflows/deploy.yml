@@ -1,0 +1,59 @@
+name: Deploy Blog
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      DEPLOY_HOST: 182.92.157.214
+      DEPLOY_USER: root
+      DEPLOY_PATH: /var/www/blog
+      RELEASE_ID: ${{ github.sha }}
+
+    steps:
+      - name: Check Out Repository
+        uses: actions/checkout@v5
+
+      - name: Install Hugo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y hugo rsync
+
+      - name: Build Site
+        run: hugo --environment production --config hugo.toml,hugo.production.toml --minify
+
+      - name: Configure SSH
+        env:
+          ALIYUN_SSH_KEY: ${{ secrets.ALIYUN_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$ALIYUN_SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+
+      - name: Prepare Remote Directories
+        run: |
+          ssh -i ~/.ssh/id_rsa "$DEPLOY_USER@$DEPLOY_HOST" \
+            "mkdir -p '$DEPLOY_PATH/releases'"
+
+      - name: Upload Release
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/id_rsa" \
+            public/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/releases/$RELEASE_ID/"
+
+      - name: Activate Release
+        run: |
+          ssh -i ~/.ssh/id_rsa "$DEPLOY_USER@$DEPLOY_HOST" <<EOF
+          set -eu
+          ln -sfnT "$DEPLOY_PATH/releases/$RELEASE_ID" "$DEPLOY_PATH/current"
+          ls -1dt "$DEPLOY_PATH"/releases/* 2>/dev/null | tail -n +6 | xargs -r rm -rf
+          EOF
