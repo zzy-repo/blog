@@ -442,6 +442,10 @@ img {
   font-size: 1.03rem;
 }
 
+.single-post .back-link {
+  margin-top: 2.75rem;
+}
+
 .article-content p,
 .article-content ul,
 .article-content ol,
