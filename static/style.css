@@ -411,7 +411,8 @@ img {
 }
 
 .post-date,
-.post-word-count {
+.post-word-count,
+.post-reading-time {
   display: inline-flex;
   align-items: center;
   color: var(--muted);
@@ -426,7 +427,8 @@ img {
   transition: transform var(--motion-fast) var(--motion-ease), background-color var(--motion-fast) var(--motion-ease);
 }
 
-.post-word-count::before {
+.post-word-count::before,
+.post-reading-time::before {
   content: "·";
   margin-right: 0.75rem;
   color: var(--muted);
