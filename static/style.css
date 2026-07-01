@@ -276,6 +276,10 @@ img {
 
 .archive-post-body {
   min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
   color: var(--text);
   font-size: 1.02rem;
   line-height: 1.65;
@@ -293,8 +297,24 @@ img {
   text-decoration-color: currentColor;
 }
 
-.archive-post-categories {
-  color: var(--text);
+.archive-post-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.archive-post-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.7rem;
+  padding: 0.08rem 0.58rem;
+  border: 1px solid rgba(31, 41, 55, 0.14);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .taxonomy-directory {
@@ -809,6 +829,17 @@ img {
 
   .archive-post-body {
     font-size: 1rem;
+    gap: 0.35rem 0.6rem;
+  }
+
+  .archive-post-tags {
+    gap: 0.35rem;
+  }
+
+  .archive-post-tag {
+    min-height: 1.58rem;
+    padding: 0.08rem 0.5rem;
+    font-size: 0.78rem;
   }
 
   .single-post-title {

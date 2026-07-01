@@ -23,7 +23,11 @@
                 <div class="archive-post-body">
                   <a class="archive-post-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
                   {{ with .Params.categories }}
-                    <span class="archive-post-categories">（{{ delimit . "，" }}）</span>
+                    <span class="archive-post-tags" aria-label="文章分类">
+                      {{ range . }}
+                        <span class="archive-post-tag">{{ . }}</span>
+                      {{ end }}
+                    </span>
                   {{ end }}
                 </div>
               </li>
