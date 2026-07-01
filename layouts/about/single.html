@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <article class="single-post">
+    <div class="single-post-inner">
+      <header class="page-header">
+        <h1>{{ .Title }}</h1>
+        {{ with .Summary }}
+          <p class="single-post-summary">{{ . }}</p>
+        {{ end }}
+      </header>
+
+      <div class="article-content">
+        {{ .Content }}
+      </div>
+    </div>
+  </article>
+{{ end }}

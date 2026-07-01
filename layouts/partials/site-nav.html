@@ -1,20 +1,18 @@
 {{- $page := .page -}}
+{{- $homeURL := `/` | relURL -}}
+{{- $postsURL := `/posts/` | relURL -}}
+{{- $categoriesURL := `/categories/` | relURL -}}
+{{- $aboutURL := `/about/` | relURL -}}
 {{- $items := slice
-  (dict "name" "首页" "url" (`/` | relURL) "kind" "home" "section" "")
-  (dict "name" "文章" "url" (`/posts/` | relURL) "kind" "" "section" "posts")
+  (dict "name" "首页" "url" $homeURL "active" $page.IsHome)
+  (dict "name" "文章" "url" $postsURL "active" (eq $page.Section "posts"))
+  (dict "name" "分类" "url" $categoriesURL "active" (hasPrefix $page.RelPermalink $categoriesURL))
+  (dict "name" "关于" "url" $aboutURL "active" (eq $page.RelPermalink $aboutURL))
 -}}
 <ul>
   {{- range $item := $items -}}
-    {{- $active := false -}}
-    {{- if eq $item.kind "home" -}}
-      {{- $active = $page.IsHome -}}
-    {{- else if $item.section -}}
-      {{- $active = eq $page.Section $item.section -}}
-    {{- else -}}
-      {{- $active = eq $page.RelPermalink $item.url -}}
-    {{- end -}}
     <li>
-      <a href="{{ $item.url }}"{{ if $active }} class="is-active"{{ end }}>{{ $item.name }}</a>
+      <a href="{{ $item.url }}"{{ if $item.active }} class="is-active"{{ end }}>{{ $item.name }}</a>
     </li>
   {{- end -}}
 </ul>

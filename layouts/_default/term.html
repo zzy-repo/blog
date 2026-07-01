@@ -1,0 +1,40 @@
+{{ define "main" }}
+  <header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}
+      <div class="page-description">{{ . }}</div>
+    {{ else }}
+      <div class="page-description">
+        <p>按主题整理文章，方便按方向浏览。</p>
+      </div>
+    {{ end }}
+  </header>
+
+  {{ $terms := .Data.Terms.Alphabetical }}
+  {{ if gt (len $terms) 0 }}
+    <section class="post-grid" aria-label="{{ .Title }}">
+      {{ range $terms }}
+        <article class="post-card">
+          <div class="post-meta">
+            <span class="post-category">分类</span>
+            <span class="post-date">{{ .Count }} 篇文章</span>
+          </div>
+
+          <h2 class="post-title">
+            <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+          </h2>
+
+          <p class="post-summary">查看这个分类下的全部文章。</p>
+
+          <p class="post-link">
+            <a class="readmore-link" href="{{ .Page.RelPermalink }}">进入分类</a>
+          </p>
+        </article>
+      {{ end }}
+    </section>
+  {{ else }}
+    <section class="empty-state">
+      <p>这里还没有分类内容。</p>
+    </section>
+  {{ end }}
+{{ end }}
