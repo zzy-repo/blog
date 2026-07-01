@@ -523,7 +523,7 @@ img {
   position: relative;
   display: inline-block;
   padding-left: 2.2rem;
-  color: var(--ink);
+  color: var(--accent-strong);
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -537,14 +537,14 @@ img {
   left: 0;
   width: 1.6rem;
   height: 1px;
-  background: rgba(22, 24, 26, 0.72);
+  background: rgba(20, 107, 183, 0.62);
   transition: transform var(--motion-fast) var(--motion-ease), background-color var(--motion-fast) var(--motion-ease), opacity var(--motion-fast) var(--motion-ease);
 }
 
 .archive-entry-link:hover {
-  color: var(--ink);
+  color: var(--accent-strong);
   transform: translateX(0.14rem);
-  opacity: 0.84;
+  opacity: 0.72;
 }
 
 .archive-entry-link:hover::before {
