@@ -12,11 +12,12 @@ BASE_URL="${HUGO_BASE_URL:-http://$HOST:$PORT/}"
 
 usage() {
   cat <<'EOF'
-Usage: ./service.sh {start|stop|status|test|help}
+Usage: ./service.sh {start|stop|restart|status|test|help}
 
 Commands:
   start   Start the local Hugo development server in the background.
   stop    Stop the running Hugo development server.
+  restart Restart the Hugo development server.
   status  Show whether the Hugo development server is running.
   test    Run a production Hugo build for verification.
   help    Show this help message.
@@ -138,6 +139,11 @@ stop_service() {
   return 1
 }
 
+restart_service() {
+  stop_service
+  start_service
+}
+
 status_service() {
   local pid
   pid="$(read_pid)"
@@ -168,6 +174,9 @@ case "${1:-}" in
     ;;
   stop)
     stop_service
+    ;;
+  restart)
+    restart_service
     ;;
   status)
     status_service
