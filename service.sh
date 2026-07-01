@@ -12,7 +12,14 @@ BASE_URL="${HUGO_BASE_URL:-http://$HOST:$PORT/}"
 
 usage() {
   cat <<'EOF'
-Usage: ./service.sh {start|stop|status|test}
+Usage: ./service.sh {start|stop|status|test|help}
+
+Commands:
+  start   Start the local Hugo development server in the background.
+  stop    Stop the running Hugo development server.
+  status  Show whether the Hugo development server is running.
+  test    Run a production Hugo build for verification.
+  help    Show this help message.
 EOF
 }
 
@@ -167,6 +174,9 @@ case "${1:-}" in
     ;;
   test)
     test_service
+    ;;
+  help)
+    usage
     ;;
   *)
     usage >&2
