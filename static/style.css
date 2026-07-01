@@ -60,44 +60,60 @@ code {
   top: 0;
   z-index: 1000;
   background: var(--bg);
-  box-shadow: 0 12px 30px rgba(22, 24, 26, 0.08);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 8px 20px rgba(22, 24, 26, 0.05);
 }
 
-.topbar {
-  background: var(--ink);
-  color: #fff;
+.compact-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 64px;
 }
 
-.top-nav ul,
-.main-nav ul {
+.compact-brand {
+  color: var(--ink);
+  font-family: "Avenir Next Condensed", "DIN Alternate", "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.compact-nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.top-nav ul {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 0.7rem 0;
 }
 
-.top-nav a {
-  color: #fff;
-  font-size: 0.875rem;
+.compact-nav a {
+  display: block;
+  padding: 1.1rem 0;
+  border-bottom: 2px solid transparent;
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 500;
 }
 
-.top-nav a:hover,
-.top-nav a.is-active {
-  color: var(--accent);
+.compact-nav a:hover {
+  color: var(--accent-strong);
 }
 
-.site-header {
-  background: var(--bg);
+.compact-nav a.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.site-hero {
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .site-branding {
-  padding: 2.5rem 0 0;
+  padding: 4rem 0 3rem;
   text-align: center;
 }
 
@@ -121,39 +137,8 @@ code {
   font-size: 0.95rem;
 }
 
-.main-nav-shell {
-  margin-top: 2rem;
-  border-top: 2px solid var(--line-strong);
-  border-bottom: 1px solid var(--line);
-}
-
-.main-nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.main-nav a {
-  display: block;
-  padding: 1rem 0;
-  margin: 0 0.8rem;
-  border-bottom: 2px solid transparent;
-  color: var(--text);
-  font-size: 0.92rem;
-}
-
-.main-nav a:hover {
-  color: var(--accent-strong);
-}
-
-.main-nav a.is-active {
-  color: var(--ink);
-  border-bottom-color: var(--ink);
-  font-weight: 600;
-}
-
 .site-content {
-  margin: 5rem 0;
+  margin: 4rem 0 5rem;
 }
 
 .page-header {
@@ -402,31 +387,32 @@ code {
     width: min(var(--container), calc(100% - 1.5rem));
   }
 
-  .top-nav ul {
-    justify-content: center;
+  .compact-header {
+    min-height: 56px;
+    gap: 1rem;
   }
 
   .site-branding {
-    padding-top: 2rem;
+    padding: 2.5rem 0 2rem;
   }
 
-  .main-nav ul {
-    justify-content: flex-start;
+  .compact-nav ul {
     overflow-x: auto;
     scrollbar-width: none;
+    flex-wrap: nowrap;
   }
 
-  .main-nav ul::-webkit-scrollbar {
+  .compact-nav ul::-webkit-scrollbar {
     display: none;
   }
 
-  .main-nav a {
-    margin: 0 1rem 0 0;
+  .compact-nav a {
     white-space: nowrap;
+    padding: 0.95rem 0;
   }
 
   .site-content {
-    margin: 3rem 0;
+    margin: 2.5rem 0 4rem;
   }
 
   .page-header {
