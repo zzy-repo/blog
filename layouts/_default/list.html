@@ -8,18 +8,30 @@
 
   {{ $posts := .Pages.ByDate.Reverse }}
   {{ if gt (len $posts) 0 }}
-    {{ range first 1 $posts }}
-      {{ partial "post-card.html" (dict "page" . "featured" true) }}
-    {{ end }}
+    <div class="archive-list" aria-label="{{ .Title }}">
+      {{ range $posts.GroupByDate "2006" }}
+        <section class="archive-year-group" aria-labelledby="year-{{ .Key }}">
+          <h2 class="archive-year-heading" id="year-{{ .Key }}">
+            <span class="archive-year">{{ .Key }}</span>
+            <span class="archive-year-count">({{ len .Pages }})</span>
+          </h2>
 
-    {{ $rest := after 1 $posts }}
-    {{ if gt (len $rest) 0 }}
-      <section class="post-grid" aria-label="{{ .Title }}">
-        {{ range $rest }}
-          {{ partial "post-card.html" (dict "page" . "featured" false) }}
-        {{ end }}
-      </section>
-    {{ end }}
+          <ul class="archive-post-list">
+            {{ range .Pages }}
+              <li class="archive-post-item">
+                <time class="archive-post-date" datetime="{{ .Date.Format `2006-01-02T15:04:05Z07:00` }}">{{ .Date.Format "01月02日" }}</time>
+                <div class="archive-post-body">
+                  <a class="archive-post-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                  {{ with .Params.categories }}
+                    <span class="archive-post-categories">（{{ delimit . "，" }}）</span>
+                  {{ end }}
+                </div>
+              </li>
+            {{ end }}
+          </ul>
+        </section>
+      {{ end }}
+    </div>
   {{ else }}
     <section class="empty-state">
       <p>这里还没有内容。</p>
