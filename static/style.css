@@ -170,6 +170,78 @@ code {
   gap: 3.25rem 2.5rem;
 }
 
+.taxonomy-directory {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem 3rem;
+}
+
+.taxonomy-group {
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.taxonomy-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.taxonomy-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Avenir Next Condensed", "DIN Alternate", "Avenir Next", "PingFang SC", sans-serif;
+  font-size: clamp(1.45rem, 1.1vw + 1rem, 2rem);
+  line-height: 1.12;
+}
+
+.taxonomy-title a:hover {
+  color: var(--accent-strong);
+}
+
+.taxonomy-count,
+.taxonomy-post-date {
+  color: var(--muted);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.taxonomy-post-list {
+  list-style: none;
+  margin: 0 0 1.2rem;
+  padding: 0;
+}
+
+.taxonomy-post-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.taxonomy-post-list li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.taxonomy-post-link {
+  min-width: 0;
+  color: var(--text);
+  font-size: 0.98rem;
+}
+
+.taxonomy-post-link:hover {
+  color: var(--accent-strong);
+}
+
+.taxonomy-entry-link {
+  margin: 0;
+}
+
 .post-card {
   min-width: 0;
 }
@@ -374,6 +446,11 @@ code {
 @media (max-width: 980px) {
   .site-content {
     margin: 4rem 0;
+  }
+
+  .taxonomy-directory {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .post-grid {

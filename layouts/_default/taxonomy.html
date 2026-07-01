@@ -1,32 +1,76 @@
 {{ define "main" }}
+  {{ $page := . }}
   <header class="page-header">
     <h1>{{ .Title }}</h1>
     {{ with .Content }}
       <div class="page-description">{{ . }}</div>
     {{ else }}
       <div class="page-description">
-        <p>这个分类下的所有文章，按时间倒序排列。</p>
+        {{ if eq .Kind "taxonomy" }}
+          <p>按主题查看文章。</p>
+        {{ else }}
+          <p>这个分类下的所有文章，按时间倒序排列。</p>
+        {{ end }}
       </div>
     {{ end }}
   </header>
 
-  {{ $posts := .Pages.ByDate.Reverse }}
-  {{ if gt (len $posts) 0 }}
-    {{ range first 1 $posts }}
-      {{ partial "post-card.html" (dict "page" . "featured" true) }}
-    {{ end }}
+  {{ if eq $page.Kind "taxonomy" }}
+    {{ $terms := $page.Data.Terms.Alphabetical }}
+    {{ if gt (len $terms) 0 }}
+      <section class="taxonomy-directory" aria-label="{{ $page.Title }}">
+        {{ range $terms }}
+          {{ $termPage := .Page }}
+          {{ $termPosts := $termPage.Pages.ByDate.Reverse }}
+          <article class="taxonomy-group">
+            <div class="taxonomy-heading">
+              <h2 class="taxonomy-title">
+                <a href="{{ $termPage.RelPermalink }}">{{ $termPage.Title }}</a>
+              </h2>
+              <span class="taxonomy-count">{{ .Count }} 篇</span>
+            </div>
 
-    {{ $rest := after 1 $posts }}
-    {{ if gt (len $rest) 0 }}
-      <section class="post-grid" aria-label="{{ .Title }}">
-        {{ range $rest }}
-          {{ partial "post-card.html" (dict "page" . "featured" false) }}
+            {{ if gt (len $termPosts) 0 }}
+              <ul class="taxonomy-post-list">
+                {{ range first 3 $termPosts }}
+                  <li>
+                    <a class="taxonomy-post-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    <time class="taxonomy-post-date" datetime="{{ .Date.Format `2006-01-02T15:04:05Z07:00` }}">{{ .Date.Format "1月2日" }}</time>
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
+
+            <p class="taxonomy-entry-link">
+              <a class="readmore-link" href="{{ $termPage.RelPermalink }}">查看全部</a>
+            </p>
+          </article>
         {{ end }}
+      </section>
+    {{ else }}
+      <section class="empty-state">
+        <p>这里还没有分类内容。</p>
       </section>
     {{ end }}
   {{ else }}
-    <section class="empty-state">
-      <p>这个分类下还没有文章。</p>
-    </section>
+    {{ $posts := $page.Pages.ByDate.Reverse }}
+    {{ if gt (len $posts) 0 }}
+      {{ range first 1 $posts }}
+        {{ partial "post-card.html" (dict "page" . "featured" true) }}
+      {{ end }}
+
+      {{ $rest := after 1 $posts }}
+      {{ if gt (len $rest) 0 }}
+        <section class="post-grid" aria-label="{{ $page.Title }}">
+          {{ range $rest }}
+            {{ partial "post-card.html" (dict "page" . "featured" false) }}
+          {{ end }}
+        </section>
+      {{ end }}
+    {{ else }}
+      <section class="empty-state">
+        <p>这个分类下还没有文章。</p>
+      </section>
+    {{ end }}
   {{ end }}
 {{ end }}
