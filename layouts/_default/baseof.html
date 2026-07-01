@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+    <link rel="icon" type="image/png" href="{{ `favicon.png` | relURL }}">
     <link rel="stylesheet" href="{{ `style.css` | relURL }}">
     {{ if and .IsPage (eq .Section `posts`) }}
       <link rel="stylesheet" href="{{ `github-markdown-light.css` | relURL }}">
