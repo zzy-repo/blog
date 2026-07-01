@@ -491,15 +491,22 @@ img {
 
 .article-content .highlight {
   margin: 0 0 1.4rem;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #272822;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .article-content .highlight pre,
 .article-content pre {
   overflow-x: auto;
   padding: 1.2rem 1.35rem;
-  border-radius: 18px;
-  background: #272822;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  margin: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none;
+  outline: none;
+  -webkit-appearance: none;
 }
 
 .article-content .highlight pre code,
@@ -512,6 +519,17 @@ img {
   font-family: "SFMono-Regular", Menlo, Consolas, monospace;
   font-size: 0.95rem;
   line-height: 1.7;
+}
+
+.article-content .highlight pre:focus,
+.article-content .highlight pre:focus-visible,
+.article-content pre:focus,
+.article-content pre:focus-visible {
+  outline: none;
+}
+
+.article-content .highlight span[style*="display:flex"] {
+  min-width: 100%;
 }
 
 .empty-state {
