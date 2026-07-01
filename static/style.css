@@ -206,10 +206,6 @@ img {
   gap: 3.25rem 2.5rem;
 }
 
-.home-mobile-posts {
-  display: none;
-}
-
 .home-archive-link {
   margin: 3.5rem 0 0;
 }
@@ -733,25 +729,15 @@ img {
     gap: 2rem;
   }
 
-  .home-desktop-posts {
+  .post-card-featured {
     display: none;
   }
 
-  .home-mobile-posts {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .home-mobile-posts .post-card {
-    margin: 0;
-  }
-
-  .home-mobile-posts .post-title {
+  .post-grid .post-title {
     font-size: 1.3rem;
   }
 
-  .home-mobile-posts .post-summary {
+  .post-grid .post-summary {
     font-size: 0.98rem;
   }
 
@@ -780,10 +766,6 @@ img {
 
   .archive-post-body {
     font-size: 1rem;
-  }
-
-  .post-card-featured {
-    margin-bottom: 2rem;
   }
 
   .single-post-title {
