@@ -55,6 +55,14 @@ code {
   margin: 0 auto;
 }
 
+.site-chrome {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg);
+  box-shadow: 0 12px 30px rgba(22, 24, 26, 0.08);
+}
+
 .topbar {
   background: var(--ink);
   color: #fff;
@@ -86,10 +94,6 @@ code {
 
 .site-header {
   background: var(--bg);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 12px 30px rgba(22, 24, 26, 0.08);
 }
 
 .site-branding {

@@ -8,28 +8,30 @@
     <link rel="stylesheet" href="{{ `style.css` | relURL }}">
   </head>
   <body class="page-kind-{{ .Kind }}{{ if .IsHome }} is-home{{ end }}{{ if eq .Section `posts` }} section-posts{{ end }}">
-    <div class="topbar">
-      <div class="site-container">
-        <nav class="top-nav" aria-label="辅助导航">
-          {{ partial "site-nav.html" (dict "page" .) }}
-        </nav>
-      </div>
-    </div>
-
-    <header class="site-header">
-      <div class="site-container site-branding">
-        <a class="site-title" href="{{ `/` | relURL }}">{{ site.Title }}</a>
-        <p class="site-description">{{ site.Params.description }}</p>
-      </div>
-
-      <div class="main-nav-shell">
+    <div class="site-chrome">
+      <div class="topbar">
         <div class="site-container">
-          <nav class="main-nav" aria-label="主导航">
+          <nav class="top-nav" aria-label="辅助导航">
             {{ partial "site-nav.html" (dict "page" .) }}
           </nav>
         </div>
       </div>
-    </header>
+
+      <header class="site-header">
+        <div class="site-container site-branding">
+          <a class="site-title" href="{{ `/` | relURL }}">{{ site.Title }}</a>
+          <p class="site-description">{{ site.Params.description }}</p>
+        </div>
+
+        <div class="main-nav-shell">
+          <div class="site-container">
+            <nav class="main-nav" aria-label="主导航">
+              {{ partial "site-nav.html" (dict "page" .) }}
+            </nav>
+          </div>
+        </div>
+      </header>
+    </div>
 
     <main class="site-content">
       <div class="site-container">
