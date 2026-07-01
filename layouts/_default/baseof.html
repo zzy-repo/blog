@@ -6,6 +6,10 @@
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
     <link rel="stylesheet" href="{{ `style.css` | relURL }}">
+    {{ if and .IsPage (eq .Section `posts`) }}
+      <link rel="stylesheet" href="{{ `github-markdown-light.css` | relURL }}">
+      <link rel="stylesheet" href="{{ `github-article.css` | relURL }}">
+    {{ end }}
   </head>
   <body class="page-kind-{{ .Kind }}{{ if .IsHome }} is-home{{ end }}{{ if eq .Section `posts` }} section-posts{{ end }}">
     <header class="site-chrome">

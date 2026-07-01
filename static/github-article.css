@@ -1,0 +1,22 @@
+.article-content.markdown-body {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.article-content.markdown-body > :first-child {
+  margin-top: 0;
+}
+
+.article-content.markdown-body .highlight {
+  margin: 0 0 1rem;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.article-content.markdown-body .highlight pre {
+  background: transparent !important;
+}
