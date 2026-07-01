@@ -1,19 +1,32 @@
 {{ define "main" }}
   {{ $posts := where site.RegularPages.ByDate.Reverse "Section" "posts" }}
-  {{ $homepagePosts := first 7 $posts }}
-  {{ if gt (len $homepagePosts) 0 }}
-    {{ range first 1 $homepagePosts }}
-      {{ partial "post-card.html" (dict "page" . "featured" true) }}
-    {{ end }}
+  {{ $desktopPosts := first 7 $posts }}
+  {{ $mobilePosts := first 6 $posts }}
+  {{ if gt (len $desktopPosts) 0 }}
+    <div class="home-desktop-posts">
+      {{ range first 1 $desktopPosts }}
+        {{ partial "post-card.html" (dict "page" . "featured" true) }}
+      {{ end }}
 
-    {{ $rest := after 1 $homepagePosts }}
-    {{ if gt (len $rest) 0 }}
-      <section class="post-grid" aria-label="最新文章">
-        {{ range $rest }}
-          {{ partial "post-card.html" (dict "page" . "featured" false) }}
-        {{ end }}
-      </section>
-    {{ end }}
+      {{ $rest := after 1 $desktopPosts }}
+      {{ if gt (len $rest) 0 }}
+        <section class="post-grid" aria-label="最新文章">
+          {{ range $rest }}
+            {{ partial "post-card.html" (dict "page" . "featured" false) }}
+          {{ end }}
+        </section>
+      {{ end }}
+    </div>
+
+    <section class="home-mobile-posts" aria-label="最新文章">
+      {{ range $mobilePosts }}
+        {{ partial "post-card.html" (dict "page" . "featured" false) }}
+      {{ end }}
+    </section>
+
+    <p class="home-archive-link">
+      <a class="readmore-link" href="{{ `/posts/` | relURL }}">查看文章列表</a>
+    </p>
   {{ else }}
     <section class="empty-state">
       <h1>还没有文章</h1>
