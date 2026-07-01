@@ -410,7 +410,8 @@ img {
   font-weight: 600;
 }
 
-.post-date {
+.post-date,
+.post-word-count {
   display: inline-flex;
   align-items: center;
   color: var(--muted);
@@ -423,6 +424,12 @@ img {
   margin-right: 0.75rem;
   background: var(--accent);
   transition: transform var(--motion-fast) var(--motion-ease), background-color var(--motion-fast) var(--motion-ease);
+}
+
+.post-word-count::before {
+  content: "·";
+  margin-right: 0.75rem;
+  color: var(--muted);
 }
 
 .post-title,
