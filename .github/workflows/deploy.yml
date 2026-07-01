@@ -16,6 +16,8 @@ jobs:
       DEPLOY_HOST: 182.92.157.214
       DEPLOY_USER: root
       DEPLOY_PATH: /var/www/blog
+      BLOG_DOMAIN: blog.rose7.cn
+      BLOG_UPSTREAM_PORT: 8081
       RELEASE_ID: ${{ github.sha }}
 
     steps:
@@ -62,3 +64,17 @@ jobs:
           ln -sfnT "$DEPLOY_PATH/releases/$RELEASE_ID" "$DEPLOY_PATH/current"
           ls -1dt "$DEPLOY_PATH"/releases/* 2>/dev/null | tail -n +6 | xargs -r rm -rf
           EOF
+
+      - name: Install Nginx Domain Proxy
+        run: |
+          ssh -i ~/.ssh/id_rsa "$DEPLOY_USER@$DEPLOY_HOST" \
+            "DEPLOY_PATH='$DEPLOY_PATH' BLOG_DOMAIN='$BLOG_DOMAIN' BLOG_UPSTREAM_PORT='$BLOG_UPSTREAM_PORT' bash -s" \
+            < deploy/install-nginx-domain-proxy.sh
+
+      - name: Verify Internal Upstream
+        run: |
+          ssh -i ~/.ssh/id_rsa "$DEPLOY_USER@$DEPLOY_HOST" \
+            "curl -I --fail --max-time 10 'http://127.0.0.1:$BLOG_UPSTREAM_PORT/'"
+
+      - name: Verify Domain Response
+        run: curl -I --fail --max-time 15 "http://$BLOG_DOMAIN/"
