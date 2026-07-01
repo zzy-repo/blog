@@ -730,7 +730,17 @@ img {
   }
 
   .post-card-featured {
-    display: none;
+    margin-bottom: 2rem;
+  }
+
+  .post-title-featured {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+
+  .post-card-featured .post-summary {
+    max-width: none;
+    font-size: 0.98rem;
   }
 
   .post-grid .post-title {
