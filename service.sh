@@ -12,7 +12,7 @@ BASE_URL="${HUGO_BASE_URL:-http://$HOST:$PORT/}"
 
 usage() {
   cat <<'EOF'
-Usage: ./service.sh {start|stop|restart|status|test|help}
+Usage: ./service.sh {start|stop|restart|status|test|date|help}
 
 Commands:
   start   Start the local Hugo development server in the background.
@@ -20,6 +20,7 @@ Commands:
   restart Restart the Hugo development server.
   status  Show whether the Hugo development server is running.
   test    Run a production Hugo build for verification.
+  date    Print the current timestamp in ISO 8601 format with colon offset.
   help    Show this help message.
 EOF
 }
@@ -168,6 +169,12 @@ test_service() {
   )
 }
 
+date_service() {
+  local d
+  d="$(date +"%Y-%m-%dT%H:%M:%S%z")"
+  printf '%s\n' "${d:0:22}:${d:22}"
+}
+
 case "${1:-}" in
   start)
     start_service
@@ -183,6 +190,9 @@ case "${1:-}" in
     ;;
   test)
     test_service
+    ;;
+  date)
+    date_service
     ;;
   help)
     usage
