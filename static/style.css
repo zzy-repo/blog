@@ -277,7 +277,7 @@ img {
 .archive-post-body {
   min-width: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.5rem 0.75rem;
   color: var(--text);
@@ -286,6 +286,8 @@ img {
 }
 
 .archive-post-link {
+  min-width: 0;
+  flex: 1 1 auto;
   color: var(--accent-strong);
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -301,6 +303,8 @@ img {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  margin-left: auto;
+  justify-content: flex-end;
 }
 
 .archive-post-tag {
@@ -829,11 +833,14 @@ img {
 
   .archive-post-body {
     font-size: 1rem;
+    flex-wrap: wrap;
     gap: 0.35rem 0.6rem;
   }
 
   .archive-post-tags {
     gap: 0.35rem;
+    margin-left: 0;
+    justify-content: flex-start;
   }
 
   .archive-post-tag {
