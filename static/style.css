@@ -553,6 +553,7 @@ img {
   margin: 0;
   padding: 1.5rem 0 2rem;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
