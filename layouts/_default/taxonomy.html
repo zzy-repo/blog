@@ -22,13 +22,13 @@
         {{ range $terms }}
           {{ $termPage := .Page }}
           {{ $termPosts := $termPage.Pages.ByDate.Reverse }}
-          <article class="taxonomy-group">
-            <div class="taxonomy-heading">
-              <h2 class="taxonomy-title">
-                <a href="{{ $termPage.RelPermalink }}">{{ $termPage.Title }}</a>
-              </h2>
-              <span class="taxonomy-count">{{ .Count }} 篇</span>
-            </div>
+        <article class="taxonomy-group">
+          <div class="taxonomy-heading">
+            <h2 class="taxonomy-title">
+              <a href="{{ $termPage.RelPermalink }}">{{ $termPage.Title }}</a>
+            </h2>
+            <span class="taxonomy-count">{{ len $termPosts }} 篇</span>
+          </div>
 
             {{ if gt (len $termPosts) 0 }}
               <ul class="taxonomy-post-list">
