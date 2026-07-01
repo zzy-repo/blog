@@ -17,12 +17,14 @@
       </div>
     </header>
 
-    <div class="site-hero">
-      <div class="site-container site-branding">
-        <a class="site-title" href="{{ `/` | relURL }}">{{ site.Title }}</a>
-        <p class="site-description">{{ site.Params.description }}</p>
+    {{ if .IsHome }}
+      <div class="site-hero">
+        <div class="site-container site-branding">
+          <a class="site-title" href="{{ `/` | relURL }}">{{ site.Title }}</a>
+          <p class="site-description">{{ site.Params.description }}</p>
+        </div>
       </div>
-    </div>
+    {{ end }}
 
     <main class="site-content">
       <div class="site-container">
