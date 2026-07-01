@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang | default `zh-cn` }}">
   <head>
+    {{- $assetVersion := now.Unix -}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
-    <link rel="icon" type="image/png" href="{{ `favicon.png` | relURL }}">
-    <link rel="stylesheet" href="{{ `style.css` | relURL }}">
+    <link rel="icon" type="image/png" href="{{ printf "%s?v=%d" (`favicon.png` | relURL) $assetVersion }}">
+    <link rel="stylesheet" href="{{ printf "%s?v=%d" (`style.css` | relURL) $assetVersion }}">
     {{ if and .IsPage (eq .Section `posts`) }}
-      <link rel="stylesheet" href="{{ `github-markdown-light.css` | relURL }}">
-      <link rel="stylesheet" href="{{ `github-article.css` | relURL }}">
+      <link rel="stylesheet" href="{{ printf "%s?v=%d" (`github-markdown-light.css` | relURL) $assetVersion }}">
+      <link rel="stylesheet" href="{{ printf "%s?v=%d" (`github-article.css` | relURL) $assetVersion }}">
     {{ end }}
   </head>
   <body class="page-kind-{{ .Kind }}{{ if .IsHome }} is-home{{ end }}{{ if eq .Section `posts` }} section-posts{{ end }}">
