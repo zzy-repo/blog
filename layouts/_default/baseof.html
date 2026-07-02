@@ -16,16 +16,7 @@
   <body class="page-kind-{{ .Kind }}{{ if .IsHome }} is-home{{ end }}{{ if eq .Section `posts` }} section-posts{{ end }}">
     <header class="site-chrome">
       <div class="site-container compact-header">
-        <a class="compact-brand" href="{{ `/` | relURL }}">
-          <img
-            class="compact-brand-mark"
-            src="{{ printf "%s?v=%d" (`favicon.png` | relURL) $assetVersion }}"
-            alt=""
-            width="24"
-            height="24"
-          >
-          <span>{{ site.Title }}</span>
-        </a>
+        <a class="compact-brand" href="{{ `/` | relURL }}">{{ site.Title }}</a>
         <nav class="compact-nav" aria-label="主导航">
           {{ partial "site-nav.html" (dict "page" .) }}
         </nav>

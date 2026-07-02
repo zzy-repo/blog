@@ -77,9 +77,6 @@ img {
 }
 
 .compact-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
   color: var(--ink);
   font-family: "Avenir Next Condensed", "DIN Alternate", "Avenir Next", "PingFang SC", sans-serif;
   font-size: 1.05rem;
@@ -92,14 +89,6 @@ img {
 .compact-brand:hover {
   transform: translateY(-1px);
   opacity: 0.88;
-}
-
-.compact-brand-mark {
-  width: 1.5rem;
-  height: 1.5rem;
-  flex: 0 0 auto;
-  object-fit: contain;
-  opacity: 0.96;
 }
 
 .compact-nav ul {
