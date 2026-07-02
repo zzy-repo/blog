@@ -26,6 +26,15 @@
     {{ if .IsHome }}
       <div class="site-hero">
         <div class="site-container site-branding">
+          <div class="site-avatar-wrap">
+            <img
+              class="site-avatar"
+              src="{{ printf "%s?v=%d" (`favicon.png` | relURL) $assetVersion }}"
+              alt="{{ site.Title }} 头像"
+              width="88"
+              height="88"
+            >
+          </div>
           <a class="site-title" href="{{ `/` | relURL }}">{{ site.Title }}</a>
           <p class="site-description">{{ site.Params.description }}</p>
         </div>
