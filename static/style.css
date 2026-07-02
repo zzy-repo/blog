@@ -77,6 +77,9 @@ img {
 }
 
 .compact-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   color: var(--ink);
   font-family: "Avenir Next Condensed", "DIN Alternate", "Avenir Next", "PingFang SC", sans-serif;
   font-size: 1.05rem;
@@ -89,6 +92,14 @@ img {
 .compact-brand:hover {
   transform: translateY(-1px);
   opacity: 0.88;
+}
+
+.compact-brand-mark {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+  opacity: 0.96;
 }
 
 .compact-nav ul {
@@ -149,26 +160,6 @@ img {
 .site-branding {
   padding: 4rem 0 3rem;
   text-align: center;
-}
-
-.site-avatar-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.site-avatar {
-  width: 5.5rem;
-  height: 5.5rem;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 18px rgba(22, 24, 26, 0.06));
-  opacity: 0.96;
-  transition: transform var(--motion-base) var(--motion-ease), opacity var(--motion-fast) var(--motion-ease);
-}
-
-.site-avatar:hover {
-  transform: translateY(-2px);
-  opacity: 1;
 }
 
 .site-title {
@@ -776,15 +767,6 @@ img {
 
   .site-branding {
     padding: 2.5rem 0 2rem;
-  }
-
-  .site-avatar-wrap {
-    margin-bottom: 0.8rem;
-  }
-
-  .site-avatar {
-    width: 4.5rem;
-    height: 4.5rem;
   }
 
   .compact-nav ul {
